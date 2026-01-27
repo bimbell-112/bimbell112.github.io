@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimalesh Mishra | Portfolio</title>
+    <style>
+        :root {
+            --bg: #0a0a0c;
+            --panel: #16161a;
+            --accent: #ff2d55; /* Vibrant Red */
+            --accent-2: #a855f7; /* Vibrant Purple */
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            /* Standard cursor hidden to prioritize the custom one */
+            cursor: none;
+        }
+
+        .background-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 10%, rgba(255, 45, 85, 0.12), transparent),
+                        radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.12), transparent);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+        }
+
+        h1 { 
+            font-size: 3.5rem; 
+            margin: 0;
+            background: linear-gradient(to right, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        h2 { color: var(--accent-2); margin-top: 0; font-size: 1.8rem; }
+
+        .about-text { color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            font-size: 14px;
+            color: var(--accent-2);
+            font-weight: 600;
+        }
+
+        .project {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+        }
+        .project:last-child { border: none; }
+
+        .badge {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 25px; }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), var(--accent-2));
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 14px;
+            font-weight: bold;
+            transition: opacity 0.3s, transform 0.2s;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-2);
+            color: var(--accent-2);
+        }
+
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Simplified High-Visibility Cursor */
+        #custom-cursor {
+            width: 24px;
+            height: 24px;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+    <div class="background-glow"></div>
+
+    <div class="container">
+        <div class="panel">
+            <h1>Bimalesh Mishra</h1>
+            <p style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">TECHNOLOGY ENTHUSIAST</p>
+            <p class="about-text">
+                I am a technology enthusiast with a strong interest in Database Management Systems and data analytics, with basic knowledge of Data Structures and Algorithms. I have skills in SQL, Python, and data handling, and enjoy working with data to extract insights and solve problems. I am interested in data analysis, database systems, and data-driven technologies, eager to learn new tools, and motivated to build a career in data analytics and database management.
+            </p>
+        </div>
+
+        <div class="panel">
+            <h2>Technical Arsenal</h2>
+            <div class="skill-list">
+                <div class="skill">Python</div>
+                <div class="skill">PostgreSQL & MySQL</div>
+                <div class="skill">Data Science</div>
+                <div class="skill">Machine Learning</div>
+                <div class="skill">C Programming</div>
+                <div class="skill">Artificial Intelligence</div>
+                <div class="skill">HTML</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2 style="color: var(--accent);">Featured Projects</h2>
+            <div class="project">
+                <span class="badge">AI / NLP</span>
+                <h3 style="margin: 10px 0;">MedChatBot</h3>
+                <p style="color: var(--text-dim);">Successfully developed an AI-powered medical chatbot for answering health-related queries.</p>
+            </div>
+            <div class="project">
+                <span class="badge">Computer Vision</span>
+                <h3 style="margin: 10px 0;">Face Detection</h3>
+                <p style="color: var(--text-dim);">Developed a real-time face detection system utilizing Python and OpenCV for computer vision applications.</p>
+            </div>
+        </div>
+
+        <div class="panel" style="text-align: center;">
+            <h2 style="color: #fff;">Let's Build Together</h2>
+            <p style="color: var(--text-dim);">bimaleshmishra112@gmail.com</p>
+            <div class="btn-group">
+                <a href="mailto:bimaleshmishra112@gmail.com" class="btn">Email Me</a>
+                <a href="https://github.com/bimbell-112" target="_blank" class="btn btn-outline">GitHub</a>
+                <a href="https://www.linkedin.com/in/bimalesh-mishra-bsa152307" target="_blank" class="btn btn-outline">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hide cursor when it leaves the window
+        document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+        document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+        
+        // Expand cursor on links
+        document.querySelectorAll('a, .skill').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.width = '50px';
+                cursor.style.height = '50px';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.width = '24px';
+                cursor.style.height = '24px';
+            });
+        });
+    </script>
+</body>
+</html>
