@@ -6,12 +6,14 @@
     <title>Bimalesh Mishra | Portfolio</title>
     <style>
         :root {
-            --bg: #0a0a0c;
-            --panel: #16161a;
-            --accent: #ff2d55; /* Vibrant Red */
-            --accent-2: #a855f7; /* Vibrant Purple */
-            --text: #ffffff;
+            /* Updated to Purple and Black Theme */
+            --bg: #050505;
+            --panel: #0f0f12;
+            --accent: #a855f7; /* Main Purple */
+            --accent-2: #6366f1; /* Indigo/Deep Purple */
+            --text: #f8fafc;
             --text-dim: #94a3b8;
+            --star-color: #a855f7;
         }
 
         body {
@@ -21,15 +23,14 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            /* Standard cursor hidden to prioritize the custom one */
-            cursor: none;
+            cursor: none; /* Hide default cursor */
         }
 
         .background-glow {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 10%, rgba(255, 45, 85, 0.12), transparent),
-                        radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.12), transparent);
+            background: radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.15), transparent),
+                        radial-gradient(circle at 90% 90%, rgba(99, 102, 241, 0.15), transparent);
             z-index: -1;
         }
 
@@ -41,12 +42,11 @@
 
         .panel {
             background: var(--panel);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.15);
             border-radius: 24px;
             padding: 40px;
             margin-bottom: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
         h1 { 
@@ -58,7 +58,7 @@
             font-weight: 800;
         }
 
-        h2 { color: var(--accent-2); margin-top: 0; font-size: 1.8rem; }
+        h2 { color: var(--accent); margin-top: 0; font-size: 1.8rem; }
 
         .about-text { color: var(--text-dim); font-size: 1.1rem; line-height: 1.8; }
 
@@ -70,27 +70,57 @@
         }
 
         .skill {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(168, 85, 247, 0.05);
             padding: 10px 20px;
             border-radius: 12px;
             border: 1px solid rgba(168, 85, 247, 0.3);
             font-size: 14px;
-            color: var(--accent-2);
+            color: var(--accent);
             font-weight: 600;
         }
 
-        .project {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px 0;
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
-        .project:last-child { border: none; }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(168, 85, 247, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+            cursor: pointer;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .card-content { padding: 20px; }
 
         .badge {
-            color: var(--accent);
+            color: var(--accent-2);
             font-weight: 800;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 25px; }
@@ -103,43 +133,86 @@
             padding: 14px 30px;
             border-radius: 14px;
             font-weight: bold;
-            transition: opacity 0.3s, transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            transform: scale(1.05);
         }
 
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--accent-2);
-            color: var(--accent-2);
+            border: 2px solid var(--accent);
+            color: var(--accent);
         }
 
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
-        /* Simplified High-Visibility Cursor */
+        /* --- STAR CURSOR --- */
         #custom-cursor {
-            width: 24px;
-            height: 24px;
-            border: 2px solid white;
-            border-radius: 50%;
             position: fixed;
+            width: 30px;
+            height: 30px;
             pointer-events: none;
             z-index: 10000;
-            mix-blend-mode: difference;
+            transition: transform 0.1s ease-out;
             transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s;
+        }
+
+        .star {
+            background: var(--star-color);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* --- LIGHTBOX --- */
+        #lightbox {
+            display: none; 
+            position: fixed; 
+            z-index: 20000; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.95); 
+            cursor: pointer; 
+            align-items: center; 
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        #lightbox-img {
+            max-width: 90%; 
+            max-height: 80%; 
+            border-radius: 12px; 
+            border: 2px solid var(--accent); 
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #lightbox.active #lightbox-img {
+            transform: scale(1);
         }
     </style>
 </head>
 <body>
 
-    <div id="custom-cursor"></div>
+    <div id="custom-cursor">
+        <div class="star"></div>
+    </div>
+    
     <div class="background-glow"></div>
+
+    <div id="lightbox">
+        <img id="lightbox-img" src="">
+    </div>
 
     <div class="container">
         <div class="panel">
             <h1>Bimalesh Mishra</h1>
             <p style="color: var(--accent); font-weight: bold; letter-spacing: 2px;">TECHNOLOGY ENTHUSIAST</p>
             <p class="about-text">
-                I am a technology enthusiast with a strong interest in Database Management Systems and data analytics, with basic knowledge of Data Structures and Algorithms. I have skills in SQL, Python, and data handling, and enjoy working with data to extract insights and solve problems. I am interested in data analysis, database systems, and data-driven technologies, eager to learn new tools, and motivated to build a career in data analytics and database management.
+               I have experience in Machine Learning and am interested in Data Science and DBMS. I like working with data and building ML models. I am learning new technologies and improving my technical skills to solve real-world problems.
             </p>
         </div>
 
@@ -152,27 +225,58 @@
                 <div class="skill">Machine Learning</div>
                 <div class="skill">C Programming</div>
                 <div class="skill">Artificial Intelligence</div>
-                <div class="skill">HTML</div>
             </div>
         </div>
 
         <div class="panel">
             <h2 style="color: var(--accent);">Featured Projects</h2>
-            <div class="project">
-                <span class="badge">AI / NLP</span>
-                <h3 style="margin: 10px 0;">MedChatBot</h3>
-                <p style="color: var(--text-dim);">Successfully developed an AI-powered medical chatbot for answering health-related queries.</p>
+            <div class="photo-grid">
+                <div class="card">
+                    <img src="MedChatBot.jpeg" alt="MedChatBot">
+                    <div class="card-content">
+                        <span class="badge">AI / NLP</span>
+                        <h3 style="margin: 10px 0;">MedChatBot</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">AI-powered medical chatbot for health-related queries.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="FD.jpg" alt="Face Detection">
+                    <div class="card-content">
+                        <span class="badge">Computer Vision</span>
+                        <h3 style="margin: 10px 0;">Face Detection</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Real-time detection utilizing Python and OpenCV.</p>
+                    </div>
+                </div>
             </div>
-            <div class="project">
-                <span class="badge">Computer Vision</span>
-                <h3 style="margin: 10px 0;">Face Detection</h3>
-                <p style="color: var(--text-dim);">Developed a real-time face detection system utilizing Python and OpenCV for computer vision applications.</p>
+        </div>
+
+        <div class="panel">
+            <h2 style="color: var(--accent);">Certifications</h2>
+            <div class="photo-grid">
+                <div class="card">
+                    <img src="CTTC.jpeg" alt="MSME-AIML">
+                    <div class="card-content">
+                        <p style="color: #fff; font-weight: bold; margin: 0;">AI/ML</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="Advance.jpeg" alt="Advance C programming">
+                    <div class="card-content">
+                        <p style="color: #fff; font-weight: bold; margin: 0;">Advance C Programming </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="TATA.jpeg" alt="GenAI Data Analytics">
+                    <div class="card-content">
+                        <p style="color: #fff; font-weight: bold; margin: 0;">GenAI </p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="panel" style="text-align: center;">
             <h2 style="color: #fff;">Let's Build Together</h2>
-            <p style="color: var(--text-dim);">bimaleshmishra112@gmail.com</p>
+            <p style="color: var(--text-dim);">bimaleshmishra113@gmail.com</p>
             <div class="btn-group">
                 <a href="mailto:bimaleshmishra112@gmail.com" class="btn">Email Me</a>
                 <a href="https://github.com/bimbell-112" target="_blank" class="btn btn-outline">GitHub</a>
@@ -182,27 +286,39 @@
     </div>
 
     <script>
+        // Star Cursor Logic
         const cursor = document.getElementById('custom-cursor');
-
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Hide cursor when it leaves the window
-        document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
-        document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-        
-        // Expand cursor on links
-        document.querySelectorAll('a, .skill').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursor.style.width = '50px';
-                cursor.style.height = '50px';
+        document.querySelectorAll('a, .skill, .card, .card img').forEach(item => {
+            item.addEventListener('mouseenter', () => { 
+                cursor.style.transform = 'translate(-50%, -50%) scale(2) rotate(180deg)';
+                cursor.style.filter = 'drop-shadow(0 0 10px var(--accent))';
             });
-            link.addEventListener('mouseleave', () => {
-                cursor.style.width = '24px';
-                cursor.style.height = '24px';
+            item.addEventListener('mouseleave', () => { 
+                cursor.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
+                cursor.style.filter = 'none';
             });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.card img').forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                setTimeout(() => lightbox.classList.add('active'), 10);
+                lightboxImg.src = image.src;
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            setTimeout(() => lightbox.style.display = 'none', 300);
         });
     </script>
 </body>
